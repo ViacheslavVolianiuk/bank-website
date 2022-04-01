@@ -164,11 +164,20 @@ const createDots = function () {
   });
 };
 createDots();
+document
+  .querySelectorAll('.dots__dot')
+  [currentSlide].classList.add('dots__dot--active');
 
 const moveToSlide = function () {
   slides.forEach(
     (s, i) => (s.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
   );
+  document
+    .querySelectorAll('.dots__dot')
+    .forEach(dot => dot.classList.remove('dots__dot--active'));
+  document
+    .querySelectorAll('.dots__dot')
+    [currentSlide].classList.add('dots__dot--active');
 };
 
 //next slide
