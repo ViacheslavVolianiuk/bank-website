@@ -202,3 +202,8 @@ dotContainer.addEventListener('click', function (e) {
     moveToSlide();
   }
 });
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  e.returnValue = '';
+});
