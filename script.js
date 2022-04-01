@@ -203,7 +203,7 @@ dotContainer.addEventListener('click', function (e) {
   }
 });
 
-window.addEventListener('beforeunload', function (e) {
-  e.preventDefault();
-  e.returnValue = '';
-});
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   e.returnValue = '';
+// });
