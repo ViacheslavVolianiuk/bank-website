@@ -145,8 +145,51 @@ imgTargets.forEach(img => imgObserver.observe(img));
 //Slider
 const slides = document.querySelectorAll('.slide');
 const slider = document.querySelector('.slider');
-slider.style.overflow = 'visible';
+// slider.style.overflow = 'visible';
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
+const dotContainer = document.querySelector('.dots');
+
+let currentSlide = 0;
 
 slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+
+//DOTS
+const createDots = function () {
+  slides.forEach(function (item, i) {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class = "dots__dot" data-slide = "${i}"></button>`
+    );
+  });
+};
+createDots();
+
+const moveToSlide = function () {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
+  );
+};
+
+//next slide
+btnRight.addEventListener('click', function () {
+  currentSlide++;
+  if (currentSlide === 3) {
+    currentSlide = 0;
+  }
+  moveToSlide();
+});
+btnLeft.addEventListener('click', function () {
+  currentSlide--;
+  if (currentSlide === -1) {
+    currentSlide = 2;
+  }
+  moveToSlide();
+});
+
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    currentSlide = e.target.dataset.slide;
+    moveToSlide();
+  }
+});
